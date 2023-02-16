@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title th:text="#{title}"></title>
+<!-- Css -->
+<link rel="stylesheet" th:href="@{/css/normalize.css}" />
+
+<link rel="stylesheet"
+	th:href="@{http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-4.1.3.min.css}" />
+<link rel="stylesheet" th:href="@{/css/datatables.min.css}" />
+
+<!-- My Styles -->
+<link rel="stylesheet" type="text/css" th:href="@{/css/sass/myForm.css}" />
+<link rel="stylesheet" th:href="@{/css/sass/users-info.css}" />
+</head>
+<body th:dir="#{dir}">
+	
+	<!-- Start header and navbar for small size-->
+	<div th:replace="fragments/mobile_header.html::mobile_header"></div>
+	<!-- End header and navbar for small size-->
+	<!-- Right Container with header -->
+	<!-- Start Header -->
+	<div th:replace="fragments/header.html::header"></div>
+	<!-- End Header -->
+	<!--Start Enverse Page , Mother Page-->
+	<section>
+		<div class="myPage d-flex clearfix" id="main">
+		<!-- Start Left Container or left Sidebar -->
+	<div th:replace="fragments/dashboard_sidebar.html::dashboard_sidebar"></div>
+	<!-- End Left Container or left Sidebar -->
+			<!-- Start page for any size  -->
+			<div class="container-fluid ">
+				<!-- Main Page -->
+				<div class="row content ">
+					<!-- Start Main Container -->
+					<div class="container-fluid">
+						<!-- Start Main Layout -->
+						<h1 class="mt-3">Store Panel</h1>
+						<button type="button"
+							class="btn btn-success btn-lg btn-block mb-3 mt-4"
+							style="background-color: #28a745;"
+							onclick="window.location.href='/api/store/addStore'">Add
+							New Store</button>
+						<hr class="border-success">
+
+						<div class="main-table">
+							<table class="table table-bordered table-hover  my-table"
+								id="mydatatable">
+								<thead class="table-header">
+									<tr>
+										<th scope="col">ID</th>
+										<th scope="col">Name</th>
+										<th scope="col">Address</th>
+										<th scope="col">Post No</th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody class="table-body">
+									<!-- 
+                                	<tr th:if="${users.empty}">
+										<td colspan="2"> No Users Available </td>
+									</tr>
+									 -->
+									<tr th:each="store : ${stores}">
+										<th th:scope="row" th:text="${store.id}"></th>
+										<td><span th:text="${store.name}"></span></td>
+										<td><span th:text="${store.street}"></span></td>
+										<td><span th:text="${store.postNo}"></span></td>
+										<td class="more-info row">
+											<div class="ml-2">
+												<form th:action="@{/api/store/addStore/}+${store.id}"
+													method="get">
+													<button type="submit" class="btn btn-success">
+														<i class=" fa fa-edit" aria-hidden="true"></i>
+													</button>
+												</form>
+											</div>
+											<div class="ml-2">
+												<form th:action="@{'deleteStore?id='+${store.id}}"
+													method="get">
+													<button type="submit" class="btn btn-danger" disabled>
+														<i class=" fa fa-trash-o" aria-hidden="true"></i>
+													</button>
+												</form>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- End Main Layout -->
+					</div>
+					<!-- End Main Container -->
+				</div>
+				<!-- End page for any size  -->
+			</div>
+			<!-- End Row Content -->
+		</div>
+	</section>
+	<!--End Enverse Page , Mother Page-->
+	<!-- Start Footer -->
+	<div th:replace="fragments/footer.html::footer"></div>
+	<!-- End Footer -->
+	<!-- Start js -->
+
+	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.dataTables.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+
+	<script type="text/javascript" th:src="@{/js/bootstrap-4.4.1.min.js}"></script>
+	<!-- My Scripts -->
+
+	<script type="text/javascript" th:src="@{/js/table-search.js}"></script>
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+	<!-- End js -->
+</body>
+
+</html>

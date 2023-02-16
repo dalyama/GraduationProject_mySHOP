@@ -1,0 +1,85 @@
+<div th:fragment="mobile_header">
+
+	<div class="position-relative visible-xs" style="height:65px">
+		<!-- Start Header -->
+		<div class="header-sm  fixed-top shadow-lg" id="header-sm"
+			>
+			<nav class="navbar navbar-expand-md navbar-light pt-0 pb-0">
+
+				<li class="toggle-btn" sec:authorize="hasRole('ADMIN')">
+					<div class="dashboard-toggle-btn" id="header-sm-toggle-btn"
+						style="display: block" onclick="openDashboardWithoutMargin()">
+						<span></span><span></span> <span></span>
+					</div>
+				</li>
+				<div class="logo ml-0">
+					<a href="/home"> <img src="/images/myLogo.png"
+						alt="myShop logo navbar-brand" class="my-logo" />
+					</a>
+				</div>
+				<button id="navbar-toggler" class="navbar-toggler" type="button"
+					data-toggle="collapse" data-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation"
+					onclick="closeDashboard()">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav">
+						<li class="header-list-btn">
+							<form th:action="@{/home}">
+								<input class="header-btn btn " type="submit" id="home"
+									value="Home" />
+							</form>
+						</li>
+						<li class="header-list-btn">
+							<form th:action="@{/offers}" method="GET">
+								<input class="header-btn btn " type="submit" id="offers"
+									value="Offers" />
+							</form>
+						</li>
+						<li class="header-list-btn">
+							<form th:action="@{/support}" method="GET">
+								<input class="header-btn btn " type="submit" id="support"
+									value="Support" />
+							</form>
+						</li>
+						<li class="header-list-btn">
+							<form th:action="@{/quickHelp}" method="GET">
+								<input class="header-btn btn " type="submit" id="quick-help"
+									value="Quick Help" />
+							</form>
+						</li>
+						<li class="header-list-btn" sec:authorize="!isAuthenticated()">
+							<form th:action="@{/login}">
+								<input class="header-btn btn " type="submit" id="login"
+									value="Login" />
+							</form>
+						</li>
+						<li class="header-list-btn" sec:authorize="!isAuthenticated()">
+							<form th:action="@{/api/users/register}">
+								<input class="header-btn btn " type="submit" id="register"
+									value="Register" />
+							</form>
+						</li>
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+							<form th:action="@{/myAccount}" method="GET">
+								<input class="btn " type="submit" id="my-account"
+									value="My Account" />
+							</form>
+						</li>
+						<li class="nav-item" sec:authorize="isAuthenticated()">
+							<form th:action="@{/logout}" method="POST">
+								<input class="btn " type="submit" id="logout" value="Logout" />
+							</form>
+						</li>
+
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!-- End Header -->
+	</div>
+
+</div>

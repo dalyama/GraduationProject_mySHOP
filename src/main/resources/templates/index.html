@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title th:text="#{title}"></title>
+
+<!-- Logo ( shortcut icon )-->
+<link rel="shortcut icon" th:href="@{/static/favicon.ico}" />
+<!-- Css -->
+<!-- 
+<link rel="stylesheet" type="text/css"
+	href="../static/css/normalize.css" th:href="@{/css/normalize.css}" />
+
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap-4.1.3.min.css"
+	th:href="@{/css/bootstrap-4.1.3.min.css}" />
+	 -->
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	th:href="@{http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css}">
+
+<!-- 	 
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+ -->
+
+<link rel="stylesheet" type="text/css"
+	href="../static/css/jquery-ui.css" th:href="@{/css/jquery-ui.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/jquery-ui.structure.css"
+	th:href="@{/css/jquery-ui.structure.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/jquery-ui.theme.css"
+	th:href="@{/css/jquery-ui.theme.css}" />
+<!-- My Styles -->
+<!-- My Styles -->
+<link rel="stylesheet" type="text/css"
+	href="../static/css/sass/home.css" th:href="@{/css/sass/home.css}">
+
+
+<link rel="stylesheet" type="text/css" th:href="@{#{direction.style}}">
+
+<div th:if="__${#locale}__=='ar' or  __${#locale}__=='fr'"></div>
+<div th:if="__${#locale}__=='en'"></div>
+</head>
+
+
+<body th:dir="#{dir}">
+
+
+	<!-- Start header and navbar for small size-->
+	<div th:replace="fragments/mobile_header.html::mobile_header"></div>
+	<!-- End header and navbar for small size-->
+	<!-- Right Container with header -->
+	<!-- Start Header -->
+	<div th:replace="fragments/header.html::header"></div>
+	<!-- End Header -->
+	<!-- Start Filter Bar -->
+	<div th:replace="fragments/filter-bar.html::filter-bar"></div>
+	<!-- End Filter Bar -->
+	<!--Start Enverse Page , Mother Page-->
+
+	<section>
+		<div class="myPage d-flex clearfix" id="main">
+			<!-- Start Left Container or left Sidebar -->
+			<div th:replace="fragments/dashboard_sidebar.html::dashboard_sidebar"></div>
+			<!-- End Left Container or left Sidebar -->
+
+
+
+			<!-- Start page for any size  -->
+			<div class="container-fluid px-5 mb-5">
+				<!-- Main Page -->
+
+				<div class="row content ">
+					<!-- Start Main Container -->
+					<div class="container-fluid">
+						<!-- Start Main Layout -->
+						<div class="clearfix"></div>
+						<div class="search-container py-2">
+							<div class="search-box" id="search-container">
+								<form class="search-form">
+									<div class="inner-form">
+										<div class="row basic-search">
+											<div class="input-field col-lg-12">
+												<div class="form-group has-search">
+													<span class="fa fa-search form-control-feedback"></span> <input
+														type="text" class="form-control" placeholder="Search"
+														id="search">
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<!-- Start Image with full width -->
+						<div class="card-full-width-container p-2 my-3">
+							<div class="col-sm-12 p-0 m-0" th:if="${isThereAds}">
+								<!-- Start Button Add new full image -->
+								<div class="btn-container d-flex justify-content-end"
+									sec:authorize="hasRole('ADMIN')">
+									<a href="/admin/ads/home/fullwidth"
+										class="btn btn-lg btn-info m-0"> Add Full Image <span
+										class="fa fa-plus"></span>
+									</a>
+								</div>
+								<!-- End Button Add new full image -->
+								<div class="card card-full-width mt-2"
+									th:if="${!adslocal.empty}">
+									<div id="carouselExampleIndicators" class="carousel slide"
+										data-ride="carousel">
+										<ol class="carousel-indicators">
+											<li data-target="#carouselExampleIndicators"
+												th:data-slide-to="${ad.id}" class="active"></li>
+											<li th:each="ad : ${ads1}"
+												data-target="#carouselExampleIndicators"
+												th:data-slide-to="${ad.id}"></li>
+										</ol>
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img class="d-block w-100"
+													src="../static/uploads/adsFullWidth/}+${ad1.name}"
+													th:src="@{/images/uploads/adsFullWidth/}+${ad1.name}"
+													th:alt="${ad1.name}">
+												<div class="carousel-caption d-md-block">
+													<h5 class="myad-text" th:text="${ad1.title}"></h5>
+													<p class="myad-text" th:text="${ad1.photoText}"></p>
+												</div>
+											</div>
+											<div class="carousel-item" th:each="ad : ${ads}">
+												<img class="d-block w-100"
+													th:src="@{/images/uploads/adsFullWidth/}+${ad.name}"
+													th:alt="${ad.name}">
+												<div class="carousel-caption d-none d-md-block">
+													<h5 class="myad-text" th:text="${ad.title}"></h5>
+													<p class="myad-text" th:text="${ad.photoText}"></p>
+												</div>
+											</div>
+										</div>
+										<a class="carousel-control-prev"
+											href="#carouselExampleIndicators" role="button"
+											data-slide="prev"> <span
+											class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="sr-only">Previous</span>
+										</a> <a class="carousel-control-next"
+											href="#carouselExampleIndicators" role="button"
+											data-slide="next"> <span
+											class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="sr-only">Next</span>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<!--End Image with full width-->
+						</div>
+						<div class="clearfix"></div>
+
+						<!-- Start offer swiper -->
+						<div class="offers-container ">
+							<div class="off-con">
+
+								<div class="offers row">
+									<div class="col-sm-2 left-slide-caption">
+										<div class="amazing-offer">
+											<span>A</span> <span>m</span> <span>a</span> <span>z</span> <span>i</span>
+											<span>n</span> <span>g</span> <span class="ml-1">O</span> <span>f</span>
+											<span>f</span> <span>e</span> <span>r</span>
+										</div>
+										<img src="images/Special-Offer-Transparent-PNG.png"> <a
+											class="btn border" href="#">more offers <i
+											class="fa fa-angle-right more-offer-icon ml-1"></i></a>
+									</div>
+									<div class="offers-swiper-container col-sm-10">
+										<div class="swiper-wrapper">
+											<a href="#"></a>
+											<div class="swiper-slide border">
+												<div class="product">
+													<img src="images/products/product_1.jpg">
+													<h2 class="title">Title 1</h2>
+												</div>
+												<div class="caption">
+													<div class="d-flex">
+														<h3 class="sale">50%</h3>
+														<del>80$</del>
+													</div>
+													<h4 class="price">40$</h4>
+												</div>
+											</div>
+											<div class="swiper-slide border">
+												<div class="product">
+													<img src="images/products/product_2.jpg">
+													<h2 class="title">Title 2</h2>
+												</div>
+												<div class="caption">
+													<div class="d-flex">
+														<h3 class="sale">15%</h3>
+														<del>60$</del>
+													</div>
+													<h4 class="price">51$</h4>
+												</div>
+
+											</div>
+											<div class="swiper-slide border">
+												<div class="product">
+													<img src="images/products/product_3.jpg">
+													<h2 class="title">Title 3</h2>
+												</div>
+												<div class="caption">
+													<div class="d-flex">
+														<h3 class="sale">60%</h3>
+														<del>100$</del>
+													</div>
+													<h4 class="price">40$</h4>
+												</div>
+
+											</div>
+											<div class="swiper-slide border">
+												<div class="product">
+													<img src="images/products/product_4.jpg">
+													<h2 class="title">Title 4</h2>
+												</div>
+												<div class="caption">
+													<div class="d-flex">
+														<h3 class="sale">25%</h3>
+														<del>40$</del>
+													</div>
+													<h4 class="price">30$</h4>
+												</div>
+
+											</div>
+											<div class="swiper-slide border">
+												<div class="product">
+													<img src="images/products/product_5.jpg">
+													<h2 class="title">Title 5</h2>
+												</div>
+												<div class="caption">
+													<div class="d-flex">
+														<h3 class="sale">50%</h3>
+														<del>70$</del>
+													</div>
+													<h4 class="price">35$</h4>
+												</div>
+
+											</div>
+											<div class="swiper-slide border">
+												<div class="product">
+													<img src="images/products/product_6.jpg">
+													<h2 class="title">Title 6</h2>
+												</div>
+												<div class="caption">
+													<div class="d-flex">
+														<h3 class="sale">30%</h3>
+														<del>60$</del>
+													</div>
+													<h4 class="price">42$</h4>
+												</div>
+
+											</div>
+											<div class="swiper-slide border">
+												<div class="product">
+													<img src="images/products/product_7.jpg">
+													<h2 class="title">Title 7</h2>
+												</div>
+												<div class="caption">
+													<div class="d-flex">
+														<h3 class="sale">15%</h3>
+														<del>100$</del>
+													</div>
+													<h4 class="price">85$</h4>
+												</div>
+
+											</div>
+											<div class="swiper-slide border">
+												<div class="product">
+													<img src="images/products/product_8.jpg">
+													<h2 class="title">Title 8</h2>
+												</div>
+												<div class="caption">
+													<div class="d-flex">
+														<h3 class="sale">40%</h3>
+														<del>50$</del>
+													</div>
+													<h4 class="price">20$</h4>
+												</div>
+											</div>
+											<div class="swiper-slide border">
+												<div class="product">
+													<img src="images/products/product_9.jpg">
+													<h2 class="title">Title 9</h2>
+												</div>
+												<div class="caption">
+													<div class="d-flex">
+														<h3 class="sale">10%</h3>
+														<del>100$</del>
+													</div>
+													<h4 class="price">90$</h4>
+												</div>
+
+											</div>
+										</div>
+										<!-- Add Pagination -->
+										<div class="swiper-pagination"></div>
+										<div class="swiper-button-next swiper-button-white "></div>
+										<div class="swiper-button-prev swiper-button-white "></div>
+									</div>
+								</div>
+
+
+							</div>
+
+						</div>
+						<!-- End offer swiper -->
+						
+						<div class="clearfix"></div>
+
+						<div class="sort-nav m-0 p-2 mt-3 mb-3 border-bottom border-light">
+							<ul class="row d-flex m-0 p-0" th:if="${searchname != null}">
+								<li><i class="sort-icon"><img class="sort-icon-img"
+										th:src="@{/images/icons/sort.png}"></i></li>
+								<li class="sort-btn d-block "><a
+									th:classappend="${sortBy == 'cheapest'} ? btn-active"
+									class="btn sort-text"
+									th:href="@{/home?name=}+${searchname}+@{&sortBy=cheapest}">Cheapest</a></li>
+								<li class="sort-btn d-block "><a
+									th:classappend="${sortBy == 'most-expensive'} ? btn-active"
+									class="btn sort-text"
+									th:href="@{/home?name=}+${searchname}+@{&sortBy=most-expensive}">Most
+										Expensive</a></li>
+								<li class="sort-btn d-block "><a
+									th:classappend="${sortBy == 'newest'} ? btn-active"
+									class="btn sort-text"
+									th:href="@{/home?name=}+${searchname}+@{&sortBy=newest}">Newest</a></li>
+								<li class="sort-btn d-block "><a
+									th:classappend="${sortBy == 'bestselling'} ? btn-active"
+									class="btn sort-text"
+									th:href="@{/home?name=}+${searchname}+@{&sortBy=bestselling}">Bestselling</a></li>
+							</ul>
+							<ul class="row d-flex m-0 p-0" th:if="${searchname == null}">
+								<li><i class="sort-icon"><img class="sort-icon-img"
+										th:src="@{/images/icons/sort.png}"></i></li>
+								<li class="sort-btn d-block "><a
+									th:classappend="${sortBy == 'cheapest'} ? btn-active"
+									class="btn sort-text" th:href="@{/home?sortBy=cheapest}">Cheapest</a></li>
+								<li class="sort-btn d-block "><a
+									th:classappend="${sortBy == 'most-expensive'} ? btn-active"
+									class="btn sort-text" th:href="@{/home?sortBy=most-expensive}">Most
+										Expensive</a></li>
+								<li class="sort-btn d-block "><a
+									th:classappend="${sortBy == 'newest'} ? btn-active"
+									class="btn sort-text" th:href="@{/home?sortBy=newest}">Newest</a></li>
+								<li class="sort-btn d-block "><a
+									th:classappend="${sortBy == 'bestselling'} ? btn-active"
+									class="btn sort-text" th:href="@{/home?sortBy=bestselling}">Bestselling</a></li>
+							</ul>
+						</div>
+
+						<div class="clearfix"></div>
+						<div class="row m-0" sec:authorize="hasRole('ADMIN')">
+							<div class="col-sm-12 p-2">
+								<div class="btn-container">
+									<a href="/api/product/addProduct"
+										class="btn btn-info btn-lg new-product"> Add New Product <span
+										class="fa fa-plus"></span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<!--Start normal Cards or single blog-->
+						<div class="row products-container" id="products-container">
+							<div class="product col-lg-3  col-md-4 col-sm-6 p-2"
+								th:each="product : ${products.content}">
+								<div class="single-blog" style="cursor: pointer;"
+									th:onclick="'window.location.href = \'' +@{/api/product/getProduct/}+${product.id} + '\''">
+
+									<img
+										src="../static/images/uploads/productsDB/+${product.albumName}"
+										th:src="@{/images/uploads/productsDB/}+${product.albumName}"
+										th:alt="${product.name}">
+									<div class="card-content">
+										<h2 id="product-title" class="product-title"
+											th:text="${product.name}"></h2>
+										<h3 id="product-gender" class="product-gender d-none"
+											th:text="${product.gender}"></h3>
+										<h3 id="product-category" class="product-category d-none"
+											th:text="${product.category.name}"></h3>
+										<h3 class="cost" th:text="${product.cost} + ' $'"></h3>
+										<h3 id="product-size" class="product-size d-none"
+											th:text="${product.cost}"></h3>
+										<p class="blog-text d-none" th:text="${product.description}"></p>
+
+									</div>
+
+									<div class="card-btn btn-group">
+										<!--
+	                                    <a class="btn-success add-to-cart btn" th:href="@{/api/cart/2/addCart}">Add to Cart</a>
+									    -->
+										<a class="btn-info more-info btn"
+											th:href="@{/api/product/getProduct/}+${product.id}"> More
+											info</a>
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+
+						<nav class="my-page-navigation" aria-label="Page navigation"
+							th:if="${products.totalPages gt 1}">
+							<ul class="pagination pagination-home">
+								<li class="page-item" th:if="${currentPage > 1}"><a
+									class="page-link" th:href="@{/home/(page= ${currentPage - 1})}"
+									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+										<span class="sr-only">Previous</span>
+								</a></li>
+								<li class="page-item"
+									th:each="i: ${#numbers.sequence(0,products.totalPages-1)}"><a
+									class="page-link"
+									th:classappend="${currentPage == i+1 }? 'is-active'"
+									th:href="@{/home?(page= ${i+1})}" th:text="${i+1}"></a></li>
+
+								<li class="page-item"
+									th:if="${currentPage} lt ${products.totalPages }"><a
+									class="page-link" th:href="@{/home/(page= ${currentPage + 1})}"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+										<span class="sr-only">Next</span>
+								</a></li>
+							</ul>
+						</nav>
+
+
+						<!--End normal Cards or single blog-->
+
+						<!-- End Main Layout -->
+					</div>
+					<!-- End Main Container -->
+				</div>
+				<!-- End page for any size  -->
+			</div>
+			<!-- End Row Content -->
+		</div>
+	</section>
+	<!--End Enverse Page , Mother Page-->
+	<!-- Start Footer -->
+	<div th:replace="fragments/footer.html::footer"></div>
+	<!-- End Footer -->
+	<!-- Start js -->
+	<!-- End Library Js -->
+	<script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"
+		th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script type="text/javascript" src="../static/js/popper.min.js"
+		th:src="@{/js/popper.min.js}"></script>
+	<script type="text/javascript"
+		src="../static/js/bootstrap-4.4.1.min.js"
+		th:src="@{/js/bootstrap-4.4.1.min.js}"></script>
+	<!-- End Library Js -->
+	<!-- Start My Js -->
+	<script type="text/javascript" th:src="@{#{direction.script}}"></script>
+	<script type="text/javascript"
+		src="../static/js/jquery-ui-1.9.2.custom.min.js"
+		th:src="@{/js/jquery-ui.js}"></script>
+	<script type="text/javascript" src="../static/js/search.js"
+		th:src="@{/js/search.js}"></script>
+
+	<script type="text/javascript" src="../static/js/swiper.min.js"
+		th:src="@{/js/swiper.min.js}"></script>
+	<script type="text/javascript" src="../static/js/myswiper.js"
+		th:src="@{/js/myswiper.js}"></script>
+	<!-- End My js -->
+</body>
+
+</html>

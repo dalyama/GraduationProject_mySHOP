@@ -1,0 +1,94 @@
+//Here we determine all the colors
+$primary-color: #fff;
+$secondary-color: #f1f1f1; //page , body color
+$text-color:black;
+$text-hover-color:$primary-color;
+$hr-color:rgb(235, 5, 5);
+$hover-color: #6a5acd;
+$active-color: #ee82ee;
+$visited-color: #3cb371;
+$transation: all .5s;
+
+/* Toggle btn colot */
+
+$header-toggle-btn:red;
+$dashboard-toggle-btn:red;
+
+/*  dashboard colors
+    Start   */
+
+$dashboard-background-color: #fff;
+$dashboard-hover-background-color:#fff;
+$dashboard-list-hover-color:#17a2b8; //#007bff;
+$dashboard-active-color:black;
+$dashboard-card-title-color: red;
+$dashboard-card-list-category-color: $text-color;
+$dashboard-card-list-category-bachground-hover-color: #4B515D;
+$dashboard-card-list-category-hover-color:#4B515D;
+$dashbord-card-hr-color:LightGray;
+
+/*  End   
+    Dashboard Colors    */
+
+
+/*  Header Colors
+    Start   */
+
+$header-btn-color:#000;
+$header-btn-background-hover-color:#17a2b8;
+$header-btn-hover-color:#17a2b8;
+$header-background-color:$primary-color;
+$header-profile-cart-color-overlay: #7d3c98;
+
+/*  End   
+    Header Colors    */
+
+
+/*  Footer Colors
+    Start   */
+
+$footer-color:#35636a;
+$footer-bottom-color:#3E4551;
+
+/*  End
+    Footer Color    */
+
+
+/*  Start
+    dataTable colors    */
+
+$table-color:$secondary-color;
+$table-hover-color:#ddd;
+$table-header-color:#4B515D;
+$table-even-color:#fff;
+$table-even-hover-color:#e46363;
+$table-odd-hover-color:#007bff;
+
+/*  End
+    dataTable colors    */
+
+//Here we determine all the sizes 
+//Sizes
+$header-height:80px;
+//Dashboard Sizes
+$dashboard-width:280px;
+$dashboard-width-minus:-280px;
+$dashboard-btn-width:230px;
+//
+$isHeaderFullWidth:true;
+$isDashboardOpened:true;
+
+/*  Start 
+    Cart Table Style */
+
+$cart-table-background-color:white;
+
+/*  End 
+    Cart Table Style */
+
+$left:left;
+$right:right;
+$padding-left:padding-left;
+$padding-right:padding-right;
+$margin-left:margin-left;
+$margin-right:margin-right;

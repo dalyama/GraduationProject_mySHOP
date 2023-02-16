@@ -1,0 +1,123 @@
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+}
+
+.main-table-search-box {
+    margin-left: 15px !important;
+}
+
+.main-table {
+    //margin: 50px 15px 30px 15px;
+    //background-color: white;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    //overflow: auto; 
+    tbody {
+        td,
+        th {
+            color: #000;
+        }
+    }
+    .dataTables_wrapper {
+        //background-color: $table-color;
+        padding: .5rem;
+        .dataTables_length,
+        .dataTables_filter,
+        .dataTables_info,
+        .paging_simple_numbers {
+            margin: 10px 0px 10px 0;
+            padding: 10px 0px 10px 0;
+        }
+        .dataTables_length {
+            //float: $left;
+            //background-color: $primary-color;
+            label {
+                font-size: medium;
+                color: $text-color;
+                select {
+                    margin: 0 5px;
+                    border-radius: 10px;
+                    height: 35px;
+                    width: 60px;
+                    color: $text-color;
+                    background-color: $table-color;
+                }
+            }
+        }
+        .dataTables_filter {
+            //background-color: $primary-color;
+            /*float: $right;
+            @media screen and (max-width: 768px) {
+                float: $left;
+            }*/
+            label {
+                font-size: medium;
+                color: $text-color;
+                input {
+                    padding-left: 10px;
+                    border-radius: 2px;
+                    height: 35px;
+                    width: 300px;
+                    color: $text-color;
+                }
+            }
+        }
+        .my-table {
+            .table-header {
+                background-color: $table-header-color;
+                color: white;
+            }
+            .table-body {
+                /*td,
+                th {
+                    border: .2px solid $footer-color;
+                }*/
+                tr:nth-child(even) {
+                    background-color: $table-even-color;
+                    color: $text-color;
+                    &:hover {
+                        //background-color: $table-even-hover-color;
+                        background-color: $table-odd-hover-color;
+                        color: $table-hover-color;
+                    }
+                }
+                .odd:hover {
+                    //background-color: $table-even-hover-color;
+                    background-color: $table-odd-hover-color;
+                    color: $primary-color;
+                }
+                .more-info {
+                    .my-btn {
+                        color: $primary-color;
+                        background-color: #333;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+        .dataTables_info {
+            color: $text-color;
+            font-size: medium;
+            font-weight: bold;
+        }
+        .paging_simple_numbers {
+            color: $text-color;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    }
+    .page-item.active .page-link {
+        z-index: 0;
+    }
+}

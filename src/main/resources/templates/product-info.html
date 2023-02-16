@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title th:text="#{title}"></title>
+<!-- Css -->
+<link rel="stylesheet" type="text/css" href="/css/normalize.css"
+	th:href="@{/css/normalize.css}" />
+<link rel="stylesheet" type="text/css"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	th:href="@{http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css}">
+<link rel="stylesheet" type="text/css"
+	href="/css/bootstrap-4.1.3.min.css"
+	th:href="@{/css/bootstrap-4.1.3.min.css}" th:crossorigin="@{anonymous}" />
+
+<!-- My Styles -->
+<link rel="stylesheet" type="text/css" href="/css/owl.carousel.min.css"
+	th:href="@{/css/owl.carousel.min.css}">
+<link rel="stylesheet" type="text/css"
+	href="/css/owl.theme.default.min.css"
+	th:href="@{/css/owl.theme.default.min.css}">
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/sass/more-info.css}" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/sass/home.css" th:href="@{#{direction.style}}">
+</head>
+<body th:dir="#{dir}">
+
+
+	<!-- Start header and navbar for small size-->
+	<div th:replace="fragments/mobile_header.html::mobile_header"></div>
+	<!-- End header and navbar for small size-->
+	<!-- Right Container with header -->
+	<!-- Start Header -->
+	<div th:replace="fragments/header.html::header"></div>
+	<!-- End Header -->
+	<!--Start Enverse Page , Mother Page-->
+
+	<div class="clearfix"></div>
+
+	<!--Start Enverse Page , Mother Page-->
+	<section>
+		<div class="myPage d-flex clearfix" id="main">
+			<!-- Start Left Container or left Sidebar -->
+			<div th:replace="fragments/dashboard_sidebar.html::dashboard_sidebar"></div>
+			<!-- End Left Container or left Sidebar -->
+			<!-- Start page for any size  -->
+			<div class="container-fluid ">
+				<!-- Main Page -->
+				<div class="row content ">
+					<!-- Start Main Container -->
+					<div class="container-fluid main-container">
+						<!-- Start Main Layout -->
+						<div class="more-info-page">
+							<div class="row more-info-container">
+								<div class="col-lg-4 col-md-5 col-sm-12 p-4">
+									<div class="images">
+										<div class="card card-full-width ">
+											<div id="carouselExampleIndicators" class="carousel slide"
+												data-ride="carousel">
+												<ol class="carousel-indicators">
+													<li data-target="#carouselExampleIndicators"
+														th:data-slide-to="0" class="active"></li>
+													<li th:each="productPhoto : ${productPhotosId}"
+														data-target="#carouselExampleIndicators"
+														th:data-slide-to="${productPhoto.id}"></li>
+												</ol>
+												<div class="carousel-inner">
+													<div class="carousel-item active">
+														<img class="d-block w-100"
+															src="../static/images/uploads/productsDB/+${productPhotoActive.product.albumName}"
+															th:src="@{/images/uploads/productsDB/}+${productPhotoActive.product.albumName}"
+															th:alt="${productPhotoActive.product.name}">
+													</div>
+													<div class="carousel-item"
+														th:each="productPhoto : ${productPhotos}">
+														<img class="d-block w-100"
+															src="../static/images/uploads/productsDB/+${productPhoto.name}"
+															th:src="@{/images/uploads/productsDB/}+${productPhoto.name}"
+															th:alt="${productPhoto.name}">
+													</div>
+												</div>
+												<a class="carousel-control-prev"
+													href="#carouselExampleIndicators" role="button"
+													data-slide="prev"> <span
+													class="carousel-control-prev-icon" aria-hidden="true"></span>
+													<span class="sr-only">Previous</span>
+												</a> <a class="carousel-control-next"
+													href="#carouselExampleIndicators" role="button"
+													data-slide="next"> <span
+													class="carousel-control-next-icon" aria-hidden="true"></span>
+													<span class="sr-only">Next</span>
+												</a>
+											</div>
+										</div>
+									</div>
+									<div class="container">
+										<div class="product-icon" th:with="var = 6">
+											<form th:action="@{/cart/}+${id}+@{/addCart}" method="post"
+												id="action-cart">
+												<div class="row justify-content-between m-2">
+													<div class="my-spinner mt-1">
+														<input id="quantity" name="quantity" type="number"
+															value="1" min="1" max="1000" step="1">
+													</div>
+													<div class="card-btn mt-1">
+														<button type="submit" id="add-to-cart"
+															class="btn-info add-to-cart btn">Add to Cart</button>
+													</div>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="info col-lg-8 col-md-7 col-sm-12 p-4"
+									th:object="${productsDetails}">
+									<div class="product-data row">
+										<h4 class="text-dark title-desc">
+											Product Name : <span class="text-primary info-desc ml-2"
+												th:text="${productDetails.product.name}"></span>
+										</h4>
+									</div>
+									<div class="product-data row">
+										<div class="form-group ">
+											<label class="text-dark title-desc" for="size">Size :</label>
+											<select id="size-select" class="form-control"
+												style="width: auto; display: inline;"
+												onchange="displaySelectedSizeColors(theList)">
+												<option th:each="size :${sizes}" th:value="${size}"
+													th:text="${size}"></option>
+											</select>
+										</div>
+									</div>
+									<script type="text/javascript" th:inline="javascript">
+									    /*<![CDATA[*/ 
+									    	var theList = [[${stocks}]]
+									    /*]]>*/
+									</script>
+									<div class="product-data row thymeleaf-color"
+										id="thymeleaf-color">
+										<div class="form-group ">
+											<label class="text-dark title-desc " for="size">Available
+												Colors :</label> <select id="thymeleaf-color-select"
+												class="form-control" style="width: auto; display: inline;"
+												onchange="selectColor(theList)">
+												<option th:each="color :${colors}" th:value="${color}"
+													th:text="${color}"></option>
+											</select>
+										</div>
+									</div>
+									<div class="product-data row js-color" id="js-color"
+										style="display: none;">
+										<div class="form-group ">
+											<label class="text-dark title-desc " for="size">Available
+												Colors :</label> <select id="js-color-select" class="form-control"
+												style="width: auto; display: inline;"
+												onchange="selectColor(theList)">
+											</select>
+										</div>
+									</div>
+									<div class="product-data row">
+										<h5 class="text-dark title-desc">
+											Price : <span class="text-primary info-desc"
+												id="product-price" th:text="${productDetails.price}"></span>
+										</h5>
+									</div>
+									<div class="product-data row">
+										<h5 class="text-dark title-desc">
+											Made in : <span class="text-primary info-desc ml-1 mr-1"
+												th:text="${productDetails.product.madein}"></span>
+										</h5>
+										<h5 class="text-dark title-desc">
+											- By <span class="text-primary info-desc ml-1 mr-1"
+												th:text="${productDetails.product.category.name}"></span>
+										</h5>
+									</div>
+									<div class="product-data row">
+										<h5 class="text-dark title-desc">
+											Gender : <span class="text-primary info-desc"
+												th:text="${productDetails.product.gender}"></span>
+										</h5>
+									</div>
+									<div class="product-data row">
+										<h5 class="text-dark title-desc">
+											Sales : <span class="text-primary info-desc"
+												th:text="${productDetails.sale}"></span>
+										</h5>
+									</div>
+									<div class="row">
+										<h5 class="text-dark title-desc">
+											Rank : <span class="text-primary info-desc"></span>
+										</h5>
+									</div>
+
+
+								</div>
+								<hr>
+
+							</div>
+							<div class="container-fluid suggested-products-container">
+								<div class="">Some Smailer Products Suggested for you</div>
+								<div class="row suggested-products mt-5 mb-5"
+									id="suggested-products">
+
+									<div class="owl-carousel owl-theme" id="slider">
+										<div th:each="product : ${suggestedProducts}"
+											class="ml-0 mr-0">
+											<div class="card" style="cursor: pointer;"
+												th:onclick="'window.location.href = \'' +@{/api/product/getProduct/}+${product.id} + '\''">
+												<img
+													th:src="@{/images/uploads/productsDB/}+${product.albumName}"
+													class="card-img-top " th:alt="${product.albumName}" />
+												<div class="card-body">
+													<h5 class="card-title" th:text="${product.name}"></h5>
+													<h5 th:text="${product.description}"></h5>
+													<h5 th:text="${product.cost + ' $'}"></h5>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Start Main Layout -->
+					</div>
+					<!-- End Main Container -->
+				</div>
+				<!-- End page for any size  -->
+			</div>
+			<!-- End Row Content -->
+		</div>
+	</section>
+	<!--End Enverse Page , Mother Page-->
+
+
+	<!-- Start Footer -->
+	<section>
+		<div>
+			<div class="footer" id="footer" onclick="closeDashboard()">
+				<div class="footer-top">
+					<div class="container">
+						<div class="row">
+							<div
+								class="col-md-2 col-sm-6 col-xs-12 segment-one md-mb-30 sm-mb-30">
+								<h2>Divinector</h2>
+								<p>Some quick example text to build on the card title and
+									make up the bulk of the card's content.</p>
+							</div>
+							<div
+								class="col-md-3 col-sm-6 col-xs-12 segment-tow md-mb-30 sm-mb-30">
+								<h2>Useful Link</h2>
+								<ul>
+									<li><a href="#">Bla Bla</a></li>
+									<li><a href="#">Bla Bla</a></li>
+									<li><a href="#">Bla Bla</a></li>
+									<li><a href="#">Bla Bla</a></li>
+									<li><a href="#">Bla Bla</a></li>
+								</ul>
+							</div>
+							<div
+								class="col-md-3 col-sm-6 col-xs-12 segment-three md-mb-30 sm-mb-30">
+								<h2>Follow Us</h2>
+								<p>Please Follow us on our Social Media Profile in order to
+									keep updated. Some quick example text to build on the card
+									title and make up the bulk of the card's content.</p>
+								<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
+									class="fa fa-instagram"></i></a> <a href="#"><i
+									class="fa fa-twitter"></i></a> <a href="#"><i
+									class="fa fa-linkedin"></i></a> <a href="#"><i
+									class="fa fa-pinterest"></i></a>
+							</div>
+							<div
+								class="col-md-4 col-sm-6 col-xs-12 segment-four md-mb-30 sm-mb-30">
+								<h2>Our NewLetter</h2>
+								<p>Please Follow us on our Social Media Profile in order to
+									keep updated. Some quick example text to build on the card
+									title and make up the bulk of the card's content.</p>
+								<form action="">
+									<input type="email"> <input type="submit"
+										value="subscribe">
+								</form>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+				<p class="footer-bottom-text">All Right reserved by
+					&copy;Saeed-Mawed.2019</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- End Footer -->
+
+
+	<!-- My Scripts -->
+	<!-- js -->
+	<script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"
+		th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script type="text/javascript" src="../static/js/popper.min.js"
+		th:src="@{/js/popper.min.js}"></script>
+	<script type="text/javascript"
+		src="../static/js/bootstrap-4.4.1.min.js"
+		th:src="@{/js/bootstrap-4.4.1.min.js}"></script>
+	<!-- My Scripts -->
+	<script src="js/bootstrap-input-spinner.js"
+		th:src="@{/js/bootstrap-input-spinner.js}"></script>
+	<script type="text/javascript" src="../static/js/main.js"
+		th:src="@{#{direction.script}}"></script>
+	<script>
+		$('input[type=number]').inputSpinner();
+	</script>
+	<script type="text/javascript" th:src="@{/js/add-to-cart.js}"></script>
+
+	<script type="text/javascript" th:src="@{/js/owl.carousel.js}"></script>
+	<script>
+        $('.owl-carousel').owlCarousel({
+            /*autoplay : true,
+            autoplayHavorPause : true,*/
+            loop: true,
+            margin: 10,
+            nav: true,
+            dots: true,
+            navText: ['<i class="fa fa-angle-left" aria-hidden="true"></i>', '<i class="fa fa-angle-right" aria-hidden="true"></i>'],
+
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 4
+                },
+                1200: {
+                	items:4
+                },
+                1400: {
+                	items:6
+                }
+                
+            }
+        })
+        
+    </script>
+
+</body>
+
+</html>

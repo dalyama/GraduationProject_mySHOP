@@ -1,0 +1,157 @@
+// Start Footer Style 
+.footer {
+    transition: $transation;
+    p,
+    h3,
+    h4,
+    h5,
+    a,
+    li {
+        color: #000 !important;
+    }
+    h2 {
+        color: #000 !important;
+        text-shadow: 0 3px 8px #f9f4f4, 0 -3px 8px white !important;
+        font-size: larger !important;
+        font-weight: bolder !important;
+        padding: 5px 0;
+    }
+    .footer-top {
+        height: auto;
+        //background-color: $footer-color;
+        background: linear-gradient(to top, #f1f1f1, #DAE2F8, #D6A4A4);
+        ;
+        padding: 105px 0;
+        .container {
+            width: 100%;
+            height: 100%;
+        }
+        p {
+            color: #999;
+            line-height: 25px;
+        }
+        h2,
+        h3 {
+            color: #fff;
+        }
+        h2 {
+            font-size: 18px;
+        }
+        .segment-one {
+            h3 {
+                font-family: Courgette;
+                color: #fff;
+                letter-spacing: 3px;
+                margin: 10px 0;
+            }
+        }
+        .segment-tow {
+            h2 {
+                color: #fff;
+                font-family: poppins;
+                text-transform: uppercase;
+            }
+            h2:before {
+                content: "|";
+                color: #a62a2a;
+                padding-right: 10px;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                li {
+                    border-bottom: 1px solid #000;
+                    line-height: 40px;
+                    a {
+                        color: #212121 !important;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+        .segment-three {
+            h2 {
+                color: #fff;
+                font-family: poppins;
+                text-transform: uppercase;
+            }
+            h2:before {
+                content: '|';
+                color: #a62a2a;
+                padding-right: 10px;
+            }
+            a {
+                background-color: #494848;
+                width: 40px;
+                height: 40px;
+                display: inline-block;
+                border-radius: 50%;
+                i {
+                    font-size: 20px;
+                    color: #fff;
+                    padding: 10px 12px;
+                }
+            }
+        }
+        .segment-four {
+            h2 {
+                color: #fff;
+                font-family: Poppins;
+                text-transform: uppercase;
+            }
+            h2:before {
+                content: '|';
+                color: #a62a2a;
+                padding-right: 10px;
+            }
+            form input[type=submit] {
+                background: #a62a2a;
+                border: none;
+                padding: 3px 7px;
+                color: #fff;
+                text-transform: uppercase;
+                text-align: center;
+            }
+        }
+    }
+    .footer-bottom-text {
+        text-align: center;
+        //background: linear-gradient(to top, #2c3e50, #35636a);
+        background: linear-gradient(to bottom, #f1f1f1, #DAE2F8, #D6A4A4);
+        line-height: 75px;
+        margin: 0;
+        padding: 50px;
+        box-shadow: 0 1px 5px #fff, 0 -1px 5px #666;
+        color: #000 !important;
+        //text-shadow: 0 3px 8px red, 0 -3px 8px #a62a2a !important;
+        font-size: larger !important;
+        font-weight: bolder !important;
+    }
+    @media only screen and (min-width:768px) and (max-width:991px) {
+        .md-mb-30 {
+            margin-bottom: 30px;
+        }
+        .footer-bottom-text {
+            margin: 0;
+        }
+    }
+    @media only screen and (max-width:767px) {
+        .sm-mb-30 {
+            margin-bottom: 30px;
+        }
+        .footer-top {
+            padding: 50px 0;
+        }
+        .footer-bottom-text {
+            margin: 0;
+        }
+    }
+    @media screen and (max-width: 767px) {
+        // footer for small width
+        .footer-top {
+            width: 100%;
+            margin: 0;
+        }
+    }
+}

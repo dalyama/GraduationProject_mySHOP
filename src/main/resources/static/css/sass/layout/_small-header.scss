@@ -1,0 +1,50 @@
+@import '../helper/variables';
+.header-sm {
+    z-index: 99;
+    background-color: $header-background-color !important;
+    transition: $transation;
+    //margin-bottom: 80px !important;
+    .btn {
+        background-color: $header-background-color;
+        border: none;
+        margin: 0px 0px 5px 0px;
+        width: 100%;
+        text-align: left;
+        &:hover {
+            background-color: $header-btn-background-hover-color;
+            //color: $header-btn-hover-color;
+            transition: all 1s;
+        }
+    }
+    #header-toggle-btn {
+        margin-top: 0;
+        margin-bottom: 0px;
+        &:hover {
+            background-color: $header-background-color;
+        }
+    }
+    .dropdown {
+        margin: 0px 0px 5px 12px;
+    }
+    .toggle-btn {
+        position: relative;
+        cursor: pointer;
+        list-style: none;
+        margin-top: 0px;
+        .dashboard-toggle-btn {
+            list-style: none;
+            z-index: 5 !important;
+            transition: all .5s !important;
+            span {
+                margin-top: 5px !important;
+                box-shadow: 0;
+                background-color: red;
+            }
+        }
+    }
+    .navbar-collapse {
+        border-top: 1px solid;
+        margin: 5px 0;
+        padding: 5px 0;
+    }
+}

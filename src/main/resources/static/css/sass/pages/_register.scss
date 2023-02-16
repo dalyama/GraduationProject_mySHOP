@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    box-sizing: none !important;
+}
+
+
+/* Full-width input fields */
+
+.register_container {
+    height: auto;
+    padding-top: 1rem;
+    form {
+        border: none !important;
+    }
+    @media screen and (max-width: 767px) {
+        width: 100% !important;
+        margin-left: 0;
+        padding-top: 0px;
+    }
+    .container {
+        .alert {
+            margin-top: 15px;
+            font: normal bold 28px Georgia, serif;
+            color: white;
+            background-color: #dc3545;
+            opacity: 0.9;
+        }
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            height: calc(1.5em + 0.75rem + 2px);
+            margin-bottom: .5rem;
+            display: inline-block;
+            border: none;
+            background: #fff;
+            border-radius: .25rem !important;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        input[type=text]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+        /* Set a style for all buttons */
+        button {
+            background-color: $primary-color;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+        button:hover {
+            opacity: 1;
+        }
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+            padding: 14px 20px;
+            background-color: #dc3545;
+        }
+        .signupbtn {
+            background-color: #17a2b8;
+        }
+        /* Float cancel and signup buttons and add an equal width */
+        .cancelbtn,
+        .signupbtn {
+            float: $left;
+            width: 50%;
+        }
+        /* Add padding to container elements */
+        .register_container {
+            padding: 16px;
+        }
+        /* Clear floats */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        /* Change styles for cancel button and signup button on extra small screens */
+        @media screen and (max-width: 375px) {
+            width: 100%;
+            .cancelbtn,
+            .signupbtn {
+                width: 100%;
+            }
+        }
+    }
+    .gj-datepicker-md [role="right-icon"] {
+        font-size: 27px;
+        padding: 15px;
+    }
+}

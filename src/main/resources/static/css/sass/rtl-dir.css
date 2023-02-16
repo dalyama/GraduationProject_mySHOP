@@ -1,0 +1,23 @@
+body {
+  direction: rtl;
+  text-align: right !important; }
+
+.sideMenu {
+  right: 0; }
+  .sideMenu .list-btn,
+  .sideMenu .dashboard-category {
+    text-align: right; }
+
+.header .header-nav .navbar-right {
+  color: red !important;
+  position: relative;
+  height: 65px !important;
+  border-left: 0px solid #d3d3d3d3;
+  border-right: 1px solid #d3d3d3d3; }
+
+.header .header-search-container .search-box .search-form .inner-form .basic-search .input-field .has-search .form-control-feedback {
+  rotate: 90deg; }
+.header .header-search-container .search-box .search-form .inner-form .basic-search .input-field .has-search .form-control {
+  padding: 0 60px 0 0; }
+
+/*# sourceMappingURL=rtl-dir.css.map */

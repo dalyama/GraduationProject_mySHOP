@@ -1,0 +1,280 @@
+<div th:fragment="header">
+
+	<div th:if="${session.user == null}">
+		<script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"
+			th:src="@{/js/jquery-3.4.1.min.js}"></script>
+		<script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"
+			th:src="@{/js/ajaxController.js}"></script>
+	</div>
+	<div class="position-relative">
+
+		<div class="header must-hidden " id="header">
+			<nav class="header-nav justify-content-between shadow-lg">
+
+				<ul class="nav navbar-left header-links justify-content-start">
+					<li class="header-list-btn header-open-dashboard must-hidden"
+						id="header-open-dashboard" style="display: block;"
+						sec:authorize="hasAnyRole('MANAGER','ADMIN')">
+						<div class="header-toggle-btn" onclick="openDashboard()">
+							<span></span> <span></span> <span></span>
+						</div>
+					</li>
+					<li class="header-list-btn header-open-dashboard must-hidden"
+						id="header-close-dashboard" style="display: none;"
+						sec:authorize="hasAnyRole('MANAGER','ADMIN')">
+						<div class="header-toggle-btn" onclick="closeDashboard()">
+							<span></span> <span></span> <span></span>
+						</div>
+					</li>
+					<div class="category-icon d-none" id="category-icon"
+						onmouseover="showCategoriesMain()">
+						<img class="category-icon-img"
+							src="/images/icons/category-icon.png" alt="category icon" />
+
+					</div>
+					<!-- 
+					<div class="categories-main border-top" id="categories-main"
+						onmouseleave="hideCategoriesMain()">
+						<h3 calss="category-main-title text">categories main</h3>
+						<div class="row">
+							<div class="col-2 categories-list">
+								<ul class="p-2">
+									<li>T-shirt</li>
+									<li>Dress</li>
+									<li>Cap</li>
+									<li>Jacket</li>
+								</ul>
+							</div>
+							<div class="col-10 category-content">
+								<ul class="p-2 list-parent" id="first-category">
+									<li class="btn btn-primary block category-btn">1</li>
+									<li class="btn btn-primary block category-btn">2</li>
+									<li class="btn btn-primary block category-btn">3</li>
+									<li class="btn btn-primary block category-btn">4</li>
+									<li class="btn btn-primary block category-btn">5</li>
+									<li class="btn btn-primary block category-btn">6</li>
+									<li class="btn btn-primary block category-btn">7</li>
+									<li class="btn btn-primary block category-btn">8</li>
+									<li class="btn btn-primary block category-btn">9</li>
+									<li class="btn btn-primary block category-btn">10</li>
+									<li class="btn btn-primary block category-btn">11</li>
+									<li class="btn btn-primary block category-btn">12</li>
+									<li class="btn btn-primary block category-btn">13</li>
+									<li class="btn btn-primary block category-btn">14</li>
+									<li class="btn btn-primary block category-btn">15</li>
+									<li class="btn btn-primary block category-btn">16</li>
+									<li class="btn btn-primary block category-btn">17</li>
+									<li class="btn btn-primary block category-btn">18</li>
+									<li class="btn btn-primary block category-btn">19</li>
+									<li class="btn btn-primary block category-btn">20</li>
+									<li class="btn btn-primary block category-btn">21</li>
+									<li class="btn btn-primary block category-btn">22</li>
+									<li class="btn btn-primary block category-btn">23</li>
+									<li class="btn btn-primary block category-btn">24</li>
+									<li class="btn btn-primary block category-btn">25</li>
+									<li class="btn btn-primary block category-btn">26</li>
+								</ul>
+								<ul class="p-2 list-parent d-none" id="seconde-category">
+									<li class="btn btn-danger block category-btn ">1</li>
+									<li class="btn btn-danger block category-btn">2</li>
+									<li class="btn btn-danger block category-btn">3</li>
+									<li class="btn btn-danger block category-btn">4</li>
+									<li class="btn btn-danger block category-btn">5</li>
+									<li class="btn btn-danger block category-btn">6</li>
+									<li class="btn btn-danger block category-btn">7</li>
+									<li class="btn btn-danger block category-btn">8</li>
+									<li class="btn btn-danger block category-btn">9</li>
+									<li class="btn btn-danger block category-btn">10</li>
+									<li class="btn btn-danger block category-btn">11</li>
+									<li class="btn btn-danger block category-btn">12</li>
+									<li class="btn btn-danger block category-btn">13</li>
+									<li class="btn btn-danger block category-btn">14</li>
+									<li class="btn btn-danger block category-btn">15</li>
+									<li class="btn btn-danger block category-btn">16</li>
+									<li class="btn btn-danger block category-btn">17</li>
+									<li class="btn btn-danger block category-btn">18</li>
+									<li class="btn btn-danger block category-btn">19</li>
+									<li class="btn btn-danger block category-btn">20</li>
+									<li class="btn btn-danger block category-btn">21</li>
+									<li class="btn btn-danger block category-btn">22</li>
+									<li class="btn btn-danger block category-btn">23</li>
+									<li class="btn btn-danger block category-btn">24</li>
+									<li class="btn btn-danger block category-btn">25</li>
+									<li class="btn btn-danger block category-btn">26</li>
+								</ul>
+							</div>
+						</div>
+
+
+
+					</div>
+					
+ 					-->					
+					
+					<!-- Start Header Logo -->
+
+					<div class="logo">
+						<a href="/home"> <img src="/images/myLogo.png"
+							alt="myShop logo" class="my-logo" />
+						</a>
+					</div>
+					<div id="close-dashboard" class="toggle-btn" style="display: none;"
+						onclick="closeDashboard()">
+						<span></span><span></span> <span></span>
+					</div>
+
+					<!-- Start Header Logo -->
+					<li class="header-list-btn d-none"><a href="/home"
+						class="header-btn btn ">Home</a></li>
+					<li class="header-list-btn d-none"><a href="/offers"
+						class="header-btn btn ">Offers</a></li>
+					<li class="header-list-btn d-none"><a href="/support"
+						class="header-btn btn ">Support</a></li>
+					<li class="header-list-btn d-none"><a href="/quickHelp"
+						class="header-btn btn ">Quick Help</a></li>
+
+					<div class="header-search-container">
+						<div class="search-box" id="search-container">
+							<form class="search-form" th:action="@{/api/product/search}"
+								method="post">
+								<div class="inner-form">
+									<div class="row basic-search">
+										<div class="input-field col-lg-12">
+											<div class="form-group has-search">
+												<button class="fa fa-search form-control-feedback "></button>
+												<input type="text" class="form-control" placeholder="Search"
+													name="search" id="search">
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</ul>
+				<ul class="nav navbar-right header-links justify-content-end">
+					<li class="header-list-btn short-profile-card"
+						sec:authorize="isAuthenticated()">
+						<div th:if="${session.user.name != null}"
+							class="justify-content-between">
+							<div class="short-profile-content justify-content-start">
+								<div class="short-profile-left">
+									<div class="btn-group show dropdown" placement="bottom-right">
+										<button class="img-btn btn btn-link  dropdown-toggle"
+											aria-haspopup="true" th:onclick="showShortProfile()"
+											value="closed" id="profile-card-btn">
+											<span>
+												<div class="icon-wrapper icon-wrapper-alt rounded-circle">
+													<img class="rounded-circle "
+														th:src="@{/images/uploads/usersDB/}+${session.user.userImage.imageTrack}"
+														alt=""> <i
+														class=" glyphicon glyphicon-menu-down img-dropdown"></i>
+												</div>
+											</span>
+										</button>
+									</div>
+								</div>
+								<!-- Name and Phone -->
+								<div class="short-profile-right d-none">
+									<div class="user-name">
+										<span th:text="${session.user.name}"></span>
+									</div>
+									<div class="user-desc">
+										<span th:text="${session.user.phone}"></span>
+									</div>
+								</div>
+							</div>
+							<div class="position-relative">
+								<div class="card profile-info" id="profile-card">
+									<div class="card-header">
+										<div class="color-overlay"></div>
+									</div>
+									<div class="card-container row">
+										<div class="card-img col-lg-4">
+											<img
+												th:src="@{/images/uploads/usersDB/}+${session.user.userImage.imageTrack}">
+										</div>
+										<div class="card-body col-lg-8">
+											<h2>Saeed Mawed</h2>
+											<h2>saeed.moued@gmail.com</h2>
+											<h2>Activated from 31/12/2019</h2>
+											<h2>29 y.o</h2>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-6">
+											<form th:action="@{/myAccount}" method="GET">
+												<input type="submit" class="btn btn-success ml-3"
+													value="My Account"> <span
+													class="glyphicon glyphicon-user"></span>
+												</button>
+											</form>
+										</div>
+										<div class="col-lg-6">
+											<form th:action="@{/logout}" method="POST">
+												<input type="submit" class="btn btn-danger mr-3"
+													value="Logout"> <span
+													class="glyphicon glyphicon-log-out"></span>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div th:unless="${session.user.name != null}">
+							<script>
+								window.location.href = "/logout";
+							//setShortProfile();// if Authenticated and session.user is null then -->
+							</script>
+						</div>
+					</li>
+					<!-- cart -->
+					<li class="d-flex mx-2" sec:authorize="isAuthenticated()">
+						<div class="cart d-none ">
+							<a class="cart-btn" th:href="@{/cart}"> <i> <img
+									th:src="@{/images/icons/pngwing.com.png}"
+									th:alt="@{Shopping cart}">
+							</i>
+							</a>
+						</div> 
+						<a class="cart-btn d-flex justify-content-end" th:href="@{/cart}"><i
+							class="fa fa-shopping-cart myfa-icon cart-icon border-left"></i></a>
+					</li>
+					<li class="header-list-btn " sec:authorize="!isAuthenticated()">
+						<form th:action="@{/login}">
+							<button class="header-btn btn border" type="submit" id="login">
+								<i class="fa fa-user myfa-icon "></i>Login
+							</button>
+						</form>
+					</li>
+					<li class="lang" th:if ="__${#locale}__ =='ar'">
+						<a th:href="@{?lang=en}">En</a>
+					</li>
+					<li class="lang" th:if ="__${#locale}__ !='ar'">
+						<a th:href="@{?lang=ar}">Ar</a>
+					</li>
+					<li class="language-select d-none">
+						<div class="dropdown" th:if="__${#locale}__=='ar'">
+							<button
+								class="btn btn-info dropdown-toggle header-language-btn centralization"
+								type="button" id="dropdownMenuButton" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">Ar</button>
+							<div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+								<a class="dropdown-item centralization" th:href="@{?lang=en}">En</a>
+							</div>
+						</div>
+						<div class="dropdown" th:if="__${#locale}__ !='ar'">
+							<button
+								class="btn btn-info dropdown-toggle header-language-btn centralization"
+								type="button" id="dropdownMenuButton" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">En</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a class="dropdown-item centralization" th:href="@{?lang=ar}">Ar</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>

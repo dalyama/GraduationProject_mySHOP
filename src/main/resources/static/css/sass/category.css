@@ -1,0 +1,17 @@
+.category-container .more-info {
+  text-align: center;
+  justify-content: center;
+  display: inline-flex;
+  margin-left: auto;
+  margin-top: auto; }
+.category-container .myForm-container label {
+  color: black; }
+.category-container .myForm-container form {
+  border-right: 3px solid #dee2e6 !important; }
+  @media screen and (max-width: 991px) {
+    .category-container .myForm-container form {
+      border-width: thin;
+      border-right: 0px !important;
+      border-bottom: 3px solid #dee2e6 !important; } }
+
+/*# sourceMappingURL=category.css.map */

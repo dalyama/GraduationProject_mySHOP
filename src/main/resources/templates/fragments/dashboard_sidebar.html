@@ -1,0 +1,216 @@
+<div th:fragment="dashboard_sidebar"
+	sec:authorize="hasAnyRole('MANAGER','ADMIN')">
+
+	<div id="sideMenu" class="sideMenu">
+		<li class="toggle-btn visible-xs">
+			<div id="close-dashboard" class="dashboard-close-toggle-btn"
+				style="display: block;" onclick="closeDashboard()">
+				<span></span><span></span> <span></span>
+			</div>
+		</li>
+		
+		
+		<ul class="dashboard-list accordion " id="accordionDashboard">
+			<hr class="d-none">
+			<div class="dashboard-card border-bottom pb-3">
+				<span class="dashboard-card-title">Main Function</span>
+				<div class="dashboard-card-btn">
+					<button type="button" class="list-btn btn category-btn"
+						id="dashboardCategory" data-toggle="collapse"
+						data-target="#collapseDashboard" aria-expanded="true"
+						aria-controls="collapseDashboard">
+						<i class="left-icon"><img class="img-icon" alt=""
+							th:src="@{/images/icons/dashboard.png}" /></i> <span
+							class="dashboard-category">Dashboard</span> <i
+							class=" glyphicon glyphicon-menu-down right-icon" id="right-icon"></i>
+					</button>
+					<ul class="dashboard-card-list collapse"
+						id="collapseDashboard" aria-labelledby="dashboardCategory"
+						data-parent="#accordionDashboard">
+						<li>
+							<form th:action="@{/admin/dashboard/totalReports}" method="GET">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Total Reports" />
+							</form>
+						</li>
+						<li sec:authorize="hasRole('MANAGER')">
+							<form th:action="@{/api/admins/panel}">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Admins" />
+							</form>
+						</li>
+						<li>
+							<form th:action="@{/api/users/panel}">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Users" />
+							</form>
+						</li>
+						<li>
+							<form th:action="@{/api/product/management}">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Products" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Orders" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Delivery" />
+							</form>
+						</li>
+						<li>
+							<form th:action="@{/api/category/management}">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Categories" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Payments" />
+							</form>
+						</li>
+						<li>
+							<form th:action="@{/api/store/management}">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Stores" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Advertisement" />
+							</form>
+						</li>
+
+					</ul>
+				</div>
+
+				<div class="dashboard-card-btn">
+					<button type="button" class="list-btn btn category-btn"
+						data-toggle="collapse" data-target="#collapsePages">
+						<i class="left-icon"><img class="img-icon" alt=""
+							src="/images/icons/files.png"></i> <span
+							class="dashboard-category">Pages</span> <i
+							class=" glyphicon glyphicon-menu-down right-icon" id="right-icon"></i>
+					</button>
+					<ul class="dashboard-card-list collapse " id="collapsePages"
+						aria-labelledby="dashboardCategory"
+						data-parent="#accordionDashboard">
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Home" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Dashboard" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Our Services" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Contact us" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="About" />
+							</form>
+						</li>
+
+					</ul>
+				</div>
+
+			</div>
+			<div class="dashboard-card border-bottom">
+				<span class="dashboard-card-title">Personal stuff</span>
+				<div class="dashboard-card-btn">
+					<button type="button" class="list-btn btn category-btn"
+						data-toggle="collapse" data-target="#collapsePersonal">
+						<i class="left-icon"><img class="img-icon" alt=""
+							src="/images/icons/browser.png"></i> <span
+							class="dashboard-category">Personal</span> <i
+							class=" glyphicon glyphicon-menu-down right-icon" id="right-icon"></i>
+					</button>
+					<ul class="dashboard-card-list collapse" id="collapsePersonal"
+						data-parent="#accordionDashboard">
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="My Profile" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="My Orders" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Favourites" />
+							</form>
+						</li>
+
+
+
+					</ul>
+				</div>
+				<div class="dashboard-card-btn">
+					<button type="button" class="list-btn btn category-btn"
+						data-toggle="collapse" data-target="#collapseMassages">
+						<i class="left-icon"><img class="img-icon" alt=""
+							src="/images/icons/mail.png"></i> <span
+							class="dashboard-category">Massages</span> <i
+							class=" glyphicon glyphicon-menu-down right-icon" id="right-icon"></i>
+					</button>
+					<ul class="dashboard-card-list  collapse" id="collapseMassages"
+						data-parent="#accordionDashboard">
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Inbox" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Starred" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Important" />
+							</form>
+						</li>
+						<li>
+							<form action="http://google.com">
+								<input class="list-btn btn sublist-btn" type="submit"
+									value="Sent" />
+							</form>
+						</li>
+
+
+					</ul>
+				</div>
+			</div>
+		</ul>
+	</div>
+</div>

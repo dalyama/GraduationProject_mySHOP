@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title th:text="#{title}"></title>
+<!-- Css -->
+<link rel="stylesheet" th:href="@{/css/normalize.css}" />
+
+<link rel="stylesheet"
+	th:href="@{http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap-4.1.3.min.css}" />
+<link rel="stylesheet" th:href="@{/css/datatables.min.css}" />
+
+<!-- My Styles -->
+<link rel="stylesheet" th:href="@{/css/sass/users-info.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/sass/myForm.css}" />
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/sass/category.css}" />
+</head>
+<body th:dir="#{dir}">
+	<!-- Start header and navbar for small size-->
+	<div th:replace="fragments/mobile_header.html::mobile_header"></div>
+	<!-- End header and navbar for small size-->
+	<!-- Right Container with header -->
+	<!-- Start Header -->
+	<div th:replace="fragments/header.html::header"></div>
+	<!-- End Header -->
+	<!--Start Enverse Page , Mother Page-->
+	<section>
+		<div class="myPage d-flex clearfix" id="main">
+
+			<!-- Start Left Container or left Sidebar -->
+			<div th:replace="fragments/dashboard_sidebar.html::dashboard_sidebar"></div>
+			<!-- End Left Container or left Sidebar -->
+			<!-- Start page for any size  -->
+			<div class="container-fluid ">
+				<!-- Main Page -->
+				<div class="row content ">
+					<!-- Start Main Container -->
+					<div class="container-fluid category-container">
+						<!-- Start Main Layout -->
+						<!-- 
+						<h1>Category Panel</h1>
+						<button type="button"
+							class="btn btn-success btn-lg btn-block mb-3 mt-5"
+							style="background-color: #28a745;"
+							onclick="window.location.href='/api/category/addCategory'">Add
+							New Category</button>
+						 -->
+						<div class="row p-0 m-0">
+							<div class="myForm-container col-lg-4 m-0">
+								<form th:action="@{/api/category/addCategory}"
+									th:object="${category}" method="POST"
+									style="border: 1px solid #ccc" enctype="multipart/form-data">
+									<div class="container">
+										<h1>New Category</h1>
+										<h4 class="text-danger mb-3">Please fill in this form to
+											complete Category information.</h4>
+										<div class="form-group">
+											<label for="name">Category Name *</label> <input type="text"
+												class="form-control" id="name" th:field="*{name}" required>
+										</div>
+										<div class="form-group">
+											<label for="comment">Description and more info </label>
+											<textarea class="form-control" rows="5" id="description"
+												th:field="*{description}"></textarea>
+										</div>
+										<div class="clearfix">
+											<button type="button" class="cancelbtn"
+												onclick="window.location.reload()">Cancel</button>
+											<button type="submit" class="signupbtn">Save</button>
+										</div>
+									</div>
+								</form>
+							</div>
+							<div class="main-table col-lg-8 pl-0 pr-0 m-0">
+								<table class="table table-bordered table-hover  my-table"
+									id="mydatatable">
+									<thead class="table-header">
+										<tr>
+											<th scope="col">ID</th>
+											<th scope="col">Name</th>
+											<th scope="col">Description</th>
+											<th scope="col"></th>
+										</tr>
+									</thead>
+									<tbody class="table-body">
+										<!-- 
+	                                	<tr th:if="${users.empty}">
+											<td colspan="2"> No Users Available </td>
+										</tr>
+										 -->
+										<tr th:each="category : ${categories}">
+											<th th:scope="row" th:text="${category.id}"></th>
+											<td><span th:text="${category.name}"></span></td>
+											<td><span th:text="${category.description}"></span></td>
+											<td class="more-info row">
+												<!-- 
+												<form th:action="@{'categories/'+${category.id}}"
+													method="PUT" class=" pl-2">
+													<input class="btn my-btn bg-success" type="submit"
+														id="more-info" value="Edit" />
+												</form>
+												<form th:action="@{'categories/'+${category.id}}"
+													method="DELETE" class="ml-2">
+													<input class="btn my-btn bg-danger" type="submit"
+														id="remove" value="Remove" />
+												</form>
+												 -->
+												<div class="ml-2">
+													<form th:action="@{/api/category/update/}+${category.id}"
+														method="get">
+														<button type="submit" class="btn btn-success">
+															<i class=" fa fa-edit" aria-hidden="true"></i>
+														</button>
+													</form>
+												</div>
+												<div class="ml-2">
+													<form th:action="@{/api/category/delete/}+${category.id}"
+														method="get">
+														<button type="submit" class="btn btn-danger">
+															<i class=" fa fa-trash-o" aria-hidden="true"></i>
+														</button>
+													</form>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- End Main Layout -->
+					</div>
+					<!-- End Main Container -->
+				</div>
+				<!-- End page for any size  -->
+			</div>
+			<!-- End Row Content -->
+		</div>
+	</section>
+	<!--End Enverse Page , Mother Page-->
+	<!-- Start Footer -->
+	<div th:replace="fragments/footer.html::footer"></div>
+	<!-- End Footer -->
+	<!-- Start js -->
+
+	<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery.dataTables.min.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+
+	<script type="text/javascript" th:src="@{/js/bootstrap-4.4.1.min.js}"></script>
+	<!-- My Scripts -->
+
+	<script type="text/javascript" th:src="@{/js/table-search.js}"></script>
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+	<!-- End js -->
+</body>
+
+</html>

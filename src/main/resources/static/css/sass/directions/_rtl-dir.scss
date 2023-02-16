@@ -1,0 +1,52 @@
+$left: right;
+$right: left;
+body {
+    direction: rtl;
+    text-align: right !important;
+}
+
+.sideMenu {
+    right: 0;
+    .list-btn,
+    .dashboard-category {
+        text-align: right;
+    }
+}
+
+$background-color:color;
+.header .header-nav .navbar-right {
+    #{$background-color}: red !important;
+    position: relative;
+    height: 65px !important;
+    //margin-right: 0px;
+    //margin-left: 15px;
+    border-left: 0px solid #d3d3d3d3;
+    border-right: 1px solid #d3d3d3d3;
+    //padding-right: 5px;
+    .short-profile-content {
+        //float: $right;
+    }
+}
+
+.language-select .dropdown {
+    //margin-right: 5px;
+}
+
+.logo {
+    //margin-right: 20px;
+    //margin-left: 0;
+}
+
+.myPage {
+    //margin-right: $dashboard-width;
+    //margin-right: auto;
+}
+
+.header .header-search-container .search-box .search-form .inner-form .basic-search .input-field .has-search {
+    .form-control-feedback {
+        rotate: 90deg;
+    }
+    .form-control {
+        padding: 0 60px 0 0;
+    }
+}

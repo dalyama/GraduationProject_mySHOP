@@ -1,0 +1,48 @@
+.addDetails {
+    .product-info {
+        @media screen and(max-width: 767px) {
+            margin-top: 80px;
+        }
+        .image {
+            width: 100%;
+            height: 300px;
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .main-table {
+        margin: 0;
+        margin-top: 30px;
+        padding: 0;
+        .input-table {
+            &:hover {
+                background-color: white !important;
+            }
+            th {
+                width: 20%;
+                .row {
+                    margin: 0;
+                    padding: 0;
+                }
+                .category-select {}
+            }
+            th,
+            td {
+                padding: 5;
+                margin: 5;
+                padding-bottom: 0;
+                margin-bottom: 0;
+                input {
+                    border: none;
+                    width: 100%;
+                    height: 38px;
+                    margin: 0;
+                    padding: 0;
+                    padding: 5px;
+                }
+            }
+        }
+    }
+}
