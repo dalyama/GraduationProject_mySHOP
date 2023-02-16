@@ -3,3 +3,6 @@ application.properties/
 node_modules/
 .sass-cache/
 .vscode/
+.sts4-cache/
+.mvn/wrapper/
+.settings/
